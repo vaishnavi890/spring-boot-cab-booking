@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rate Driver</title>
+</head>
+<body>
+<h2>Rating</h2>
+<form th:action="@{/ratings/submit}" method="post">
+    <label>Ride ID:</label>
+    <input type="number" name="rideId" /><br />
+
+    <label>User ID:</label>
+    <input type="number" name="userId" /><br />
+
+    <label>Driver ID:</label>
+    <input type="number" name="driverId" /><br />
+
+    <label>Rating (1-5):</label>
+    <input type="number" name="rating" min="1" max="5" /><br />
+
+    <label>Review:</label>
+    <textarea name="review"></textarea><br />
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
