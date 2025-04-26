@@ -46,6 +46,7 @@ public class DBConnection {
     }
 
     public static void close(ResultSet rs, Statement st, Connection con) {
+
     }
 }
 
