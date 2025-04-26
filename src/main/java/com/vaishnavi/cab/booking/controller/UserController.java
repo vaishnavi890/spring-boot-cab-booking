@@ -8,46 +8,42 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 import java.util.List;
 
-@RestController
-@RequestMapping("/users")
+@RestController   // <-- REST API Controller
+@RequestMapping("/api/users")   // <-- Base URL for User APIs
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/add")
-    public String addUser(@RequestBody User user) {
-        try {
-            userService.registerUser(user);
-            return "User added successfully!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    // Create User
+    @PostMapping("/create")
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
+    // Get All Users
     @GetMapping("/all")
-    public List<User> getUsers() throws SQLException {
-        return userService.fetchAllUsers();
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    @PutMapping("/update")
-    public String updateUser(@RequestBody User user) {
-        try {
-            userService.updateUser(user);
-            return "User updated!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    // Get Single User
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable int id) {
+        return userService.getUserById(id);
     }
 
+    // Update User
+    @PutMapping("/update/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User user) {
+        return userService.updateUser(id, user);
+    }
+
+    // Delete User
     @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable int id) {
-        try {
-            userService.deleteUser(id);
-            return "User deleted!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    public String deleteUser(@PathVariable int id) throws SQLException {
+        userService.deleteUser(id);
+        return "User deleted successfully!";
     }
 }
 

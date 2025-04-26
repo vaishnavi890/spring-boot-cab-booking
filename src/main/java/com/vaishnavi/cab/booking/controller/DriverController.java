@@ -9,47 +9,39 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/drivers")
+@RequestMapping("/api/drivers")
 public class DriverController {
 
     @Autowired
     private DriverService driverService;
 
-    @PostMapping("/add")
-    public String addDriver(@RequestBody Driver driver) {
-        try {
-            driverService.registerDriver(driver);
-            return "Driver registered!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    @PostMapping("/create")
+    public Driver createDriver(@RequestBody Driver driver) {
+        return driverService.createDriver(driver);
     }
 
     @GetMapping("/all")
-    public List<Driver> getAllDrivers() throws SQLException {
-        return driverService.getDrivers();
+    public List<Driver> getAllDrivers() {
+        return driverService.getAllDrivers();
     }
 
-    @PutMapping("/update")
-    public String updateDriver(@RequestBody Driver driver) {
-        try {
-            driverService.updateDriver(driver);
-            return "Driver updated!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    @GetMapping("/{id}")
+    public Driver getDriverById(@PathVariable int id) {
+        return driverService.getDriverById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public Driver updateDriver(@PathVariable int id, @RequestBody Driver driver) {
+        return driverService.updateDriver(id, driver);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteDriver(@PathVariable int id) {
-        try {
-            driverService.deleteDriver(id);
-            return "Driver deleted!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    public String deleteDriver(@PathVariable int id) throws SQLException {
+        driverService.deleteDriver(id);
+        return "Driver deleted successfully!";
     }
 }
+
 
 
 

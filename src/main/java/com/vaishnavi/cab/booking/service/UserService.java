@@ -13,6 +13,14 @@ public interface UserService {
     void updateUser(User user) throws SQLException;
 
     void deleteUser(int userId) throws SQLException;
+
+    User updateUser(int id, User user);
+
+    User getUserById(int id);
+
+    List<User> getAllUsers();
+
+    User createUser(User user);
 }
 
 

@@ -13,6 +13,14 @@ public interface DriverService {
     void updateDriver(Driver driver) throws SQLException;
 
     void deleteDriver(int driverId) throws SQLException;
+
+    Driver updateDriver(int id, Driver driver);
+
+    Driver getDriverById(int id);
+
+    List<Driver> getAllDrivers();
+
+    Driver createDriver(Driver driver);
 }
 
 

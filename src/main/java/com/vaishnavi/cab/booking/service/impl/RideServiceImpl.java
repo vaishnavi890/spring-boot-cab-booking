@@ -1,4 +1,4 @@
-package com.vaishnavi.cab.booking.impl;
+package com.vaishnavi.cab.booking.service.impl;
 
 import com.vaishnavi.cab.booking.model.Ride;
 import com.vaishnavi.cab.booking.repository.RideRepository;
@@ -16,8 +16,9 @@ public class RideServiceImpl implements RideService {
     private RideRepository rideRepository;
 
     @Override
-    public void bookRide(Ride ride) throws SQLException {
+    public Ride bookRide(Ride ride) throws SQLException {
         rideRepository.bookRide(ride);
+        return ride;
     }
 
     @Override
@@ -33,6 +34,21 @@ public class RideServiceImpl implements RideService {
     @Override
     public void deleteRide(int rideId) throws SQLException {
         rideRepository.deleteRide(rideId);
+    }
+
+    @Override
+    public Ride updateRide(int id, Ride ride) {
+        return null;
+    }
+
+    @Override
+    public Ride getRideById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Ride> getAllRides() {
+        return List.of();
     }
 }
 

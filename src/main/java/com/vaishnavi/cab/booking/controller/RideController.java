@@ -9,45 +9,36 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rides")
+@RequestMapping("/api/rides")
 public class RideController {
 
     @Autowired
     private RideService rideService;
 
     @PostMapping("/book")
-    public String bookRide(@RequestBody Ride ride) {
-        try {
-            rideService.bookRide(ride);
-            return "Ride booked successfully!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    public Ride bookRide(@RequestBody Ride ride) throws SQLException {
+        return rideService.bookRide(ride);
     }
 
     @GetMapping("/all")
-    public List<Ride> getAllRides() throws SQLException {
-        return rideService.getRides();
+    public List<Ride> getAllRides() {
+        return rideService.getAllRides();
     }
 
-    @PutMapping("/update")
-    public String updateRide(@RequestBody Ride ride) {
-        try {
-            rideService.updateRide(ride);
-            return "Ride updated successfully!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    @GetMapping("/{id}")
+    public Ride getRideById(@PathVariable int id) {
+        return rideService.getRideById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public Ride updateRide(@PathVariable int id, @RequestBody Ride ride) {
+        return rideService.updateRide(id, ride);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteRide(@PathVariable int id) {
-        try {
-            rideService.deleteRide(id);
-            return "Ride deleted successfully!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    public String deleteRide(@PathVariable int id) throws SQLException {
+        rideService.deleteRide(id);
+        return "Ride deleted successfully!";
     }
 }
 

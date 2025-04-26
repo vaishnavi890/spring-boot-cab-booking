@@ -1,4 +1,4 @@
-package com.vaishnavi.cab.booking.impl;
+package com.vaishnavi.cab.booking.service.impl;
 
 import com.vaishnavi.cab.booking.model.Rating;
 import com.vaishnavi.cab.booking.repository.RatingRepository;

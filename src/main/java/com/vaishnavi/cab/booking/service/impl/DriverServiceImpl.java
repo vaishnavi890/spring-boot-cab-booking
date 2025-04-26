@@ -1,4 +1,4 @@
-package com.vaishnavi.cab.booking.impl;
+package com.vaishnavi.cab.booking.service.impl;
 
 import com.vaishnavi.cab.booking.model.Driver;
 import com.vaishnavi.cab.booking.repository.DriverRepository;
@@ -33,6 +33,26 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public void deleteDriver(int driverId) throws SQLException {
         driverRepository.deleteDriver(driverId);
+    }
+
+    @Override
+    public Driver updateDriver(int id, Driver driver) {
+        return null;
+    }
+
+    @Override
+    public Driver getDriverById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Driver> getAllDrivers() {
+        return List.of();
+    }
+
+    @Override
+    public Driver createDriver(Driver driver) {
+        return null;
     }
 }
 

@@ -1,4 +1,4 @@
-package com.vaishnavi.cab.booking.impl;
+package com.vaishnavi.cab.booking.service.impl;
 
 import com.vaishnavi.cab.booking.model.Payment;
 import com.vaishnavi.cab.booking.repository.PaymentRepository;
@@ -16,8 +16,9 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentRepository paymentRepository;
 
     @Override
-    public void makePayment(Payment payment) throws SQLException {
+    public Payment makePayment(Payment payment) throws SQLException {
         paymentRepository.makePayment(payment);
+        return payment;
     }
 
     @Override
@@ -33,6 +34,16 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public void deletePayment(int paymentId) throws SQLException {
         paymentRepository.deletePayment(paymentId);
+    }
+
+    @Override
+    public Payment updatePayment(int id, Payment payment) {
+        return null;
+    }
+
+    @Override
+    public Payment getPaymentById(int id) {
+        return null;
     }
 }
 

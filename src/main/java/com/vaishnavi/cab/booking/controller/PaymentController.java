@@ -9,20 +9,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/payments")
+@RequestMapping("/api/payments")
 public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
 
     @PostMapping("/make")
-    public String makePayment(@RequestBody Payment payment) {
-        try {
-            paymentService.makePayment(payment);
-            return "Payment completed successfully!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    public Payment makePayment(@RequestBody Payment payment) throws SQLException {
+        return paymentService.makePayment(payment);
     }
 
     @GetMapping("/all")
@@ -30,24 +25,20 @@ public class PaymentController {
         return paymentService.getAllPayments();
     }
 
-    @PutMapping("/update")
-    public String updatePayment(@RequestBody Payment payment) {
-        try {
-            paymentService.updatePayment(payment);
-            return "Payment updated successfully!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    @GetMapping("/{id}")
+    public Payment getPaymentById(@PathVariable int id) {
+        return paymentService.getPaymentById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public Payment updatePayment(@PathVariable int id, @RequestBody Payment payment) {
+        return paymentService.updatePayment(id, payment);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deletePayment(@PathVariable int id) {
-        try {
-            paymentService.deletePayment(id);
-            return "Payment deleted successfully!";
-        } catch (SQLException e) {
-            return "Error: " + e.getMessage();
-        }
+    public String deletePayment(@PathVariable int id) throws SQLException {
+        paymentService.deletePayment(id);
+        return "Payment deleted successfully!";
     }
 }
 

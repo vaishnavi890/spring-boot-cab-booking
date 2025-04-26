@@ -1,4 +1,4 @@
-package com.vaishnavi.cab.booking.impl;
+package com.vaishnavi.cab.booking.service.impl;
 
 import com.vaishnavi.cab.booking.model.User;
 import com.vaishnavi.cab.booking.service.UserService;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public  class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,6 +33,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(int userId) throws SQLException {
         userRepository.deleteUser(userId);
+    }
+
+    @Override
+    public User updateUser(int id, User user) {
+        return null;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return List.of();
+    }
+
+    @Override
+    public User createUser(User user) {
+        return null;
     }
 }
 
